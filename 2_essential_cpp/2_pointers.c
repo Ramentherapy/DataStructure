@@ -8,16 +8,20 @@ struct measure
 
 int main()
 {
-    struct measure m1;
+	struct measure m1;
 
 	m1.p = (int*)malloc(5*sizeof(int));
 	printf("sizeof(*m1.p) = %ld\n", sizeof(*m1.p));
+	printf("sizeof(m1.p) = %ld\n", sizeof(m1.p));
 
 	return 0;
 }
 
-// output: sizeof(*m1.p) = 4
-// similar to: sizeof(int) = 4
+// output: 
+// sizeof(*m1.p) = 4, similar to: sizeof(int) = 4
+// sizeof(m1.p) = 8
+
+// priority in C/C++: '.' > '*'
 
 
 // 在定义 int *p 时，p占有内存空间是系统分配，
