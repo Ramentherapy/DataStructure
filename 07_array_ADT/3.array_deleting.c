@@ -12,7 +12,7 @@ struct my_array
 
 #if(case == 0)
 	
-void show(struct my_array a)
+void display(struct my_array a)
 {
 	int i;
 	printf("array elements as you can see show below:\n");
@@ -36,7 +36,7 @@ void insert(struct my_array *a, int b, int index)
 		a->length++;
 		
 		printf("number 550 has been inserted to the array[3]\n");
-		show(*a);
+		display(*a);
 	}
 }
 
@@ -48,8 +48,24 @@ void append(struct my_array *a, int b)
 		a->length++;
 	
 		printf("number 555 has been appended to the array\n");
-		show(*a);
+		display(*a);
 	}
+}
+
+int delete(struct my_array *a, int index)
+{
+	
+	if(index >= 0 && index < a->length)
+	{
+		int i;
+		for(i = index; i < a->length-1; i++)
+		{
+			a->p[i] = a->p[i+1];
+		}
+		a->length--;
+		return a->p[index];
+	}
+	return 0;
 }
 
 int main(void)
@@ -70,14 +86,15 @@ int main(void)
 	{
 		scanf("%d", &arr.p[i]);
 	}
-	show(arr);
+	display(arr);
 	
 	printf("now length is  %d \n", arr.length);
 	append(&arr, 555);
 
 	insert(&arr, 550, 3);
 
-	show(arr);
+	printf("delete the value of index 2, now this value is %d\n", delete(&arr, 2));
+	display(arr);
 	printf("now length is  %d \n", arr.length);
 	free(arr.p);
 	

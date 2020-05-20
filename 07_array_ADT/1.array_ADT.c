@@ -16,7 +16,7 @@ void show(struct my_array a)
 {
 	int i;
 	printf("array elements as you can see show below:\n");
-	for(i = 0; i < a.size; i++)
+	for(i = 0; i < a.length; i++)
 	{
 		printf("%d ", a.p[i]);
 	}
