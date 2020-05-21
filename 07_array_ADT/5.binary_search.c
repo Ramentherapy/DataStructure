@@ -119,7 +119,7 @@ int linear_search_move2head(struct my_array* a, int key)
 
 int binary_search_iteration(struct my_array a, int key)
 {
-	int l = a.p[0], h = a.p[a.length-1];
+	int l = 0, h = a.length-1;
 	int mid;
 	while(l <= h)
 	{
