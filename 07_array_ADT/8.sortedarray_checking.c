@@ -143,22 +143,62 @@ void reverse2(struct arr *a)
 	}
 }
 
+void pn_sort(struct arr *a)
+{
+	int i = 0, j = a->length-1;
+	while(i < j)
+	{
+		while(a->p[i] < 0)
+		{
+			i++;
+		}
+		while(a->p[j] > 0)
+		{
+			j--;
+		}
+		if(i < j)
+		{
+			my_swap(&a->p[i], &a->p[j]);
+		}
+	}
+}
+
+int sortedarray_checking(struct arr a)
+{
+	int i;
+	for(i = 0; i < a.length-1; i++)
+	{
+		if(a.p[i] > a.p[i+1])
+		{
+			return -1;
+		}
+	}
+	return 1;
+}
+
+void insert_element2sortedarray(struct arr *a, int key)
+{
+	int i = a->length-1;
+	if(a->size > a->length)
+	{
+		while(key < a->p[i])
+		{
+			a->p[i+1] = a->p[i];
+			i--;
+		}
+		a->p[i+1] = key;
+		a->length++;
+	}
+}
+
 int main(void)
 {
-	struct arr a1 = {{0, 2, 3, 4, 7, 9}, 6, 7};
-	struct arr a2 = {{5, 7, 8, 6, 1, 2, 5}, 7, 8};
-	
-	display(a1);
-	reverse(&a1);
-	display(a1);
+	struct arr a1 = {{-1, 2, 3, -2, 7, -5}, 6, 7};
+	struct arr a2 = {{5, 7, 8, 9, 10, 20, 50}, 7, 8};
 	
 	display(a2);
-	reverse(&a2);
+	insert_element2sortedarray(&a2, 12);
 	display(a2);
 	
-	int rt0 = recursive_sum(a2, 0);
-	printf("recursive_sum(a2, 0) = %d\n", rt0);
-	int rt1 = recursive_sum2(a1, 5);
-	printf("recursive_sum2(a1, 0) = %d\n", rt1);
 	return 0;
 }
